@@ -65,8 +65,13 @@ gulp.task("uglify", function() {
 
 //拷贝css
 gulp.task("copycss", function() {
-    return gulp.src('./src/css/*.css')
-        .pipe(gulp.dest('./build/css/'))
+        return gulp.src('./src/css/*.css')
+            .pipe(gulp.dest('./build/css/'))
+    })
+    //拷贝 font
+gulp.task("minfont", function() {
+    return gulp.src('./src/font/*.*')
+        .pipe(gulp.dest('./build/font/'))
 })
 
 //压缩html
@@ -99,5 +104,5 @@ gulp.task("watch", function() {
 })
 
 
-gulp.task("build", gulp.parallel("uglify", "copycss", "minhtml", "minimg"))
+gulp.task("build", gulp.parallel("uglify", "copycss", "minhtml", "minfont", "minimg"))
 gulp.task("dev", gulp.series("Sass", "server", "watch"))
